@@ -1,15 +1,172 @@
-#entornos virtuales
-venv/
-.env/
+# =========================
 
-#variables de entorno
+# 🔐 Variables de entorno
+
+# =========================
+
 .env
+.env.*
+!.env.example
 
-#python
-__pycache__/
-*.pyc
+# =========================
 
-#archivos del sistema 
+# 🐍 Python
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Archivos compilados
+
+*.so
+
+# Distribución / empaquetado
+
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# =========================
+
+# 🧪 Testing / coverage
+
+# =========================
+
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# =========================
+
+# 📝 Logs
+
+# =========================
+
+*.log
+logs/
+uvicorn.log
+
+# =========================
+
+# ⚙️ Entornos virtuales
+
+# =========================
+
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+
+# 🗄️ Base de datos
+
+# =========================
+
+*.sqlite3
+*.db
+
+# =========================
+
+# 🧰 IDEs y editores
+
+# =========================
+
+# VSCode
+
+.vscode/
+
+# PyCharm
+
+.idea/
+
+# Otros
+
+*.swp
+*.swo
+
+# =========================
+
+# 🖥️ Sistema operativo
+
+# =========================
+
 .DS_Store
 Thumbs.db
 
+# =========================
+
+# 🐳 Docker (opcional)
+
+# =========================
+
+docker-compose.override.yml
+
+# =========================
+
+# 🔄 Alembic (migraciones)
+
+# =========================
+
+# (NO ignores versiones si quieres llevar control de migraciones)
+
+# migrations/versions/*.py
+
+# =========================
+
+# 📦 Archivos temporales
+
+# =========================
+
+tmp/
+temp/
+
+# =========================
+
+# 🔑 Claves y certificados
+
+# =========================
+
+*.pem
+*.key
+*.crt
+
+# =========================
+
+# 📁 Archivos subidos
+
+# =========================
+
+uploads/
+media/
+
+# =========================
+
+# 🧪 Misc
+
+# =========================
+
+*.bak
+*.tmp
