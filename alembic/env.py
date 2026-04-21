@@ -8,13 +8,15 @@ from alembic import context
 from dotenv import load_dotenv
 
 from app.database import Base
-
+import urllib
 load_dotenv()
 # Importar modelos para registrar metadata en Base.
 from app import models  # noqa: F401
 
 config = context.config
-database_url = os.getenv("DATABASE_URL")
+USER = os.getenv("USER")
+PASSWORD = urllib.parse.quote_plus(f"{os.getenv("PASSWORD")}")
+database_url = f"postgresql://{USER}:{PASSWORD}@localhost:5432/gestor_db"
 if database_url:
     config.set_main_option("sqlalchemy.url", database_url)
 
