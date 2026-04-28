@@ -1,29 +1,25 @@
 from logging.config import fileConfig
-import os
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
-from dotenv import load_dotenv
 
 from app.database import Base
-import urllib
-load_dotenv()
+from app.core.config import settings
+
 # Importar modelos para registrar metadata en Base.
-from app import models  # noqa: F401
+import app.models  # noqa: F401
 
 config = context.config
-USER = os.getenv("USER")
-PASSWORD = urllib.parse.quote_plus(f"{os.getenv("PASSWORD")}")
-database_url = f"postgresql://{USER}:{PASSWORD}@localhost:5432/gestor_db"
+
+database_url = settings.sqlalchemy_database_url()
 if database_url:
     config.set_main_option("sqlalchemy.url", database_url)
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# 👇 esto está perfecto
 target_metadata = Base.metadata
 
 
@@ -50,7 +46,7 @@ def run_migrations_online() -> None:
     with connectable.connect() as connection:
         context.configure(
             connection=connection,
-            target_metadata=target_metadata
+            target_metadata=target_metadata,
         )
 
         with context.begin_transaction():

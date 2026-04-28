@@ -2,18 +2,26 @@ from pydantic import BaseModel, Field
 from uuid import UUID
 
 
+class CategoryMini(BaseModel):
+    id: UUID
+    name: str
+
+    class Config:
+        from_attributes = True
+
+
 class ProductCreate(BaseModel):
     name: str = Field(min_length=2, max_length=120)
     price: float = Field(gt=0)
-    stock: int = Field(gt=0)
-    company_id: UUID
+    stock: int = Field(ge=0)
+    company_id: UUID | None = None
     category_id: UUID
 
 
 class ProductUpdate(BaseModel):
     name: str | None = Field(default=None, min_length=2, max_length=120)
     price: float | None = Field(default=None, gt=0)
-    stock: int | None = Field(default=None, gt=0)
+    stock: int | None = Field(default=None, ge=0)
     company_id: UUID | None = None
     category_id: UUID | None = None
 
@@ -25,6 +33,7 @@ class ProductResponse(BaseModel):
     stock: int
     company_id: UUID | None
     category_id: UUID | None
+    category: CategoryMini | None = None
 
     class Config:
         from_attributes = True
